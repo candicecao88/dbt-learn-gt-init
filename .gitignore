@@ -3,3 +3,11 @@ target/
 dbt_modules/
 logs/
 dbt_internal_packages/
+
+## environment files
+.env
+profiles.yml
+profiles.yml.bkp
+
+## vs code settings
+.vscode/
