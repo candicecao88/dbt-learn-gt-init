@@ -1,0 +1,16 @@
+sources:
+  - name: jaffle_shop # This is the alias for the source
+    database: raw
+    schema: jaffle_shop
+    tables: # The data objects we explicitly connect to in our source
+      - name: customers
+      - name: orders
+        config:
+          freshness:
+            warn_after: # get a warning if the data is older than this
+              count: 24 # the threshold value
+              period: hour # the unit of time
+            error_after: # raise an error if the data is older than this
+              count: 48
+              period: hour
+          loaded_at_field: _etl_loaded_at # specify the field that contains the data load timestamp
