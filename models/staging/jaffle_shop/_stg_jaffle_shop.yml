@@ -1,22 +1,28 @@
 models:
   - name: stg_jaffle_shop__customers
+    description: Staging model for jaffle_shop customers. One unique customer per row
     columns:
       - name: customer_id # this should match the column name of the model (i.e., after aliasing)
+        description: Primary key. Unique identifier for each customer
         data_tests:
           - unique
           - not_null
   - name: stg_jaffle_shop__orders
+    description: Staging order data from our jaffle shop app.
     columns:
       - name: order_id
+        description: Primary key. Unique identifier for each order
         data_tests:
           - unique
           - not_null
       - name: status
+        description: '{{ doc("order_status") }}'
         data_tests:
           - accepted_values:
               arguments: 
                 values: ['placed', 'shipped', 'completed', 'returned', 'return_pending']
       - name: customer_id
+        description: Foreign key to stg_customers.customer_id
         data_tests:
           - relationships: # test that customer_id in orders exists in customers model
                 arguments:

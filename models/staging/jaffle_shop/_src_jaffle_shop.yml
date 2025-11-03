@@ -1,11 +1,14 @@
 sources:
   - name: jaffle_shop # This is the alias for the source
+    description: A clone of a Postgres database
     database: raw
     schema: jaffle_shop
     tables: # The data objects we explicitly connect to in our source
       - name: customers
+        description: Raw customers data
         columns:
           - name: id # this should match the column name in the raw source table (i.e., before aliasing)
+            description: Primary key. Unique identifier for each customer
             data_tests:
               - unique
               - not_null
