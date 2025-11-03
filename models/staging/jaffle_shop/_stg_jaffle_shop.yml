@@ -1,0 +1,24 @@
+models:
+  - name: stg_jaffle_shop__customers
+    columns:
+      - name: customer_id # this should match the column name of the model (i.e., after aliasing)
+        data_tests:
+          - unique
+          - not_null
+  - name: stg_jaffle_shop__orders
+    columns:
+      - name: order_id
+        data_tests:
+          - unique
+          - not_null
+      - name: status
+        data_tests:
+          - accepted_values:
+              arguments: 
+                values: ['placed', 'shipped', 'completed', 'returned', 'return_pending']
+      - name: customer_id
+        data_tests:
+          - relationships: # test that customer_id in orders exists in customers model
+                arguments:
+                  to: ref('stg_jaffle_shop__customers') ## don't use double brackets here because Jinja won't render it properly in YAML
+                  field: customer_id # the field to check with in the ref model

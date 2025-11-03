@@ -4,6 +4,12 @@ sources:
     schema: jaffle_shop
     tables: # The data objects we explicitly connect to in our source
       - name: customers
+        columns:
+          - name: id # this should match the column name in the raw source table (i.e., before aliasing)
+            data_tests:
+              - unique
+              - not_null
+
       - name: orders
         config:
           freshness:
