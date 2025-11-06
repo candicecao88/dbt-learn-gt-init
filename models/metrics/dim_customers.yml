@@ -1,0 +1,10 @@
+semantic_models:
+  - name: customers
+    defaults:
+      agg_time_dimension: customer_since
+    description: Customer dimension table.
+    model: ref('dim_customers')
+    entities:
+      - name: customer
+        expr: customer_id
+        type: primary
